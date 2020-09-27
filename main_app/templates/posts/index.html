@@ -1,27 +1,23 @@
 
 
-    <hr />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     {% for post in posts %}
+    <a href="{% url 'posts_show' post.id %}">
+        <div class="card-content">
 
-
-        <p>Title: {{ post.title }}</p>
+        <h2>{{ post.title }}</h2>
+        </a>
  
         <p>Content: {{ post.content }}</p>
         <p>categories: {{ post.category }}</p>
 
     <hr />
 {% endfor %}
-</body>
-</html>
+
+{% endblock %}
 
 
 

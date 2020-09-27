@@ -18,6 +18,11 @@ class PostUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/posts/'+str(self.object.pk))
 
+class PostDelete(DeleteView):
+    model = Post
+    success_url = '/posts'
+
+
 def index(request):
     return HttpResponse('<h1>Hello, World</h1>')
 
