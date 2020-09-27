@@ -32,7 +32,6 @@ class Post(models.Model):
     category = models.CharField(
         max_length=2,
         choices=CATEGORY_CHOICES,
-        default=OTHERS,
     )
     AGE_CHOICES = [
         (THREEMONTH,'3m'),
@@ -47,7 +46,6 @@ class Post(models.Model):
     age = models.CharField(
         max_length=2,
         choices=AGE_CHOICES,
-        default=THREEMONTH,
     )
     CONDITION_CHOICES = [
         (NEW, 'New'),
@@ -60,8 +58,8 @@ class Post(models.Model):
         choices=CONDITION_CHOICES,
     )
     price = models.IntegerField
-    sold = models.BooleanField(default=True)
-    img = models.ImageField(upload_to='images/')
+    sold = models.BooleanField(default=False)
+    img = models.ImageField(upload_to='images/', blank=True)
     
 
     
