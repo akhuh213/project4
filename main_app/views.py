@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 def profile(request, username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'posts': posts})
+    return render(request, 'profile.html', {'user': user, 'posts': posts})
 
 def login_view(request):
     if request.method == 'POST':
@@ -48,6 +48,8 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            user = form.cleaned_data['username']
+            # return render(request, 'profile.html', {'username':user})
             return HttpResponseRedirect('/posts')
     else:
         form = UserCreationForm()

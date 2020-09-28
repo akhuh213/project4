@@ -62,6 +62,7 @@ class Post(models.Model):
     price = models.IntegerField
     sold = models.BooleanField(default=False)
     img = models.ImageField(upload_to='images/', blank=True)
+    time = models.TimeField
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     
@@ -76,19 +77,24 @@ class Post(models.Model):
 
 
 
-# class My_Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     zipcode = models.PositiveIntegerField(max_length=5)
-#     email = models.EmailField
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    zipcode = models.PositiveIntegerField
+    email = models.EmailField
 
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
    
+class Comment(models.Model):
+    content = models.CharField(max_length=250)
+    time = models.TimeField
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
