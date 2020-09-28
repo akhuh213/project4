@@ -95,6 +95,12 @@ def save_user_profile(sender, instance, **kwargs):
    
 class Comment(models.Model):
     content = models.CharField(max_length=250)
-    time = models.TimeField
+    created_on = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.content, self.user)

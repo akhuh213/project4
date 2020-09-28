@@ -13,16 +13,17 @@ Sat :
     - user authentication (x)
 
 Sun : 
-1. Post 
-    - image uploading 
-2. setup the comments model 
-3. comments CRUD
+1. Post (x)
+    - image uploading (x)
+2. zipcode 
+3. setup the comments model (x)
+4. comments CRUD
 
 
 Mon : 
 
 1. Search Post function 
-2. zipcode 
+
 
 Tue :
 1. message CRUD 
