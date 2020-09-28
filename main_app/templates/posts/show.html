@@ -13,18 +13,20 @@
     <a href="{% url 'posts_update' post.id%}"> Update Details</a>
     <a href="{% url 'posts_delete' post.id%}"> Delete</a>
 
-    <a href="{% url 'posts_update' post.id%}"> Update Details</a>
+    <!-- <a href="{% url 'posts_update' post.id%}"> Update Details</a> -->
 
     <h2> Comments </h2>
     {% if not post.comments.all %}
-    No Comments Yet...<a href="#">
-        Add One</a>
+    No Comments Yet...<a href="{% url 'comment_create' post.id%}">
+        Add Comment </a>
     {% else %}
         {% for comment in post.comments.all %}
         <strong>{{ comment.user }} </strong>
         {{ comment.content }}
         <hr />
         {% endfor %}
+        <a href="{% url 'comment_create' post.id%}">
+            Add Comment </a>
     {% endif %}
     </a>
 {% endblock %}

@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Post
+from .models import Post, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-
+from django.shortcuts import get_object_or_404 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 # Create your views here.
+
 
 @login_required
 def profile(request, username):
@@ -64,7 +65,7 @@ class PostCreate(CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/posts'+str(self.object.pk))
+        return HttpResponseRedirect('/posts/'+str(self.object.pk))
         
 
 class PostUpdate(UpdateView):
@@ -82,6 +83,25 @@ class PostDelete(DeleteView):
     success_url = '/posts'
 
 
+
+class CommentCreate(CreateView):
+    model = Comment
+    fields = ['content', 'user']
+    template_name = 'comment_form.html'
+   
+    success_url = '/posts/'
+
+    def form_valid(self, form):
+        print(self.object, self.request)
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.post_id = Post.objects.get(pk= self.kwargs['pk'])
+        self.object.save()
+        print(self.object.post_id)
+        return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
+
+
+
 def index(request):
     return HttpResponse('<h1>Hello, World</h1>')
 
@@ -92,3 +112,4 @@ def post_index(request):
 def post_show(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'posts/show.html', {'post':post})
+
