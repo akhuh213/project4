@@ -6,8 +6,9 @@
     <p>{{post.category}}</p>
     <p>{{post.age}}</p>
     
-    {% if post.img.url %}
-        <img src="{{ post.img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
+    {% if post.img %}
+        <img src="{{ post.img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />         
+
     {% endif %}
     <a href="{% url 'posts_update' post.id%}"> Update Details</a>
     <a href="{% url 'posts_delete' post.id%}"> Delete</a>
