@@ -144,11 +144,12 @@ def index(request):
 def post_index(request):
     posts = Post.objects.all()
 
-    myFilter = SearchFilter()
+    myFilter = SearchFilter(request.GET, queryset=posts)
+    posts = myFilter.qs
     return render(request, 'posts/index.html', {'posts':posts, 'myFilter':myFilter})
 
 def post_show(request, post_id):
     post = Post.objects.get(id=post_id)
-    myFilter = SearchFilter()
-    return render(request, 'posts/show.html', {'post':post, 'myFilter':myFilter})
+    
+    return render(request, 'posts/show.html', {'post':post})
 

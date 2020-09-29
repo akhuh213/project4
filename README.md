@@ -13,6 +13,14 @@ Sun :
     - user authentication (x)
 
 Mon : 
+
+struggle: 
+1. grabbing post id when create the comments 
+    - solution: self.object.post_id = Post.objects.get(pk= self.kwargs['pk']) 
+2. grabing posot id when deleting comment. cannot go back to the post (success_url)
+    - solution: not solved completely. for now, just set the success_url to '/posts/'
+
+
 1. Post (x)
     - image uploading (x)
 2. zipcode 
@@ -25,9 +33,24 @@ Mon :
 
 
 Tue : 
+struggle : pip install filter to python 2.7
+solution: 
+pip3 install --upgrade --force pip
+python3 -m pip install --upgrade --force pip
+pip -V
 
-1. Set up search model 
-2. Search function 
+
+1. Search 
+    - Set up search model (x)
+    - Make search bar (x)
+    - Filter function (x)
+    - get route 
+    - result showing page 
+    - routes to showing previous search
+2. msg
+    - Set up msg model (many to many)
+    - 
+
 
 
 Wed :
