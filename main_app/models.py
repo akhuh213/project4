@@ -75,17 +75,10 @@ class Post(models.Model):
 
 
 
-
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    zipcode = models.PositiveIntegerField
-    email = models.EmailField
+class Search(models.Model):
+    item = models.CharField(max_length=50)
+    created_on = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return (self.zipcode)
-
 
 
 
@@ -97,6 +90,19 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    zipcode = models.PositiveIntegerField
+    email = models.EmailField
+    searches = models.ManyToManyField(Search)
+    
+    def __str__(self):
+        return (self.zipcode)
+
+
+
 
    
 class Comment(models.Model):
@@ -111,9 +117,4 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.content, self.user)
 
-
-class Search(models.Model):
-    item = models.CharField(max_length=50)
-    created_on = models.DateTimeField(auto_now_add=True)
-    
 

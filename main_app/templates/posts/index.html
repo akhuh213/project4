@@ -4,6 +4,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<form method="get">
+    {{myFilter.form}}
+<button type="submit">Search</button>
+</form>
+
     {% for post in posts %}
     <a href="{% url 'posts_show' post.id %}">
         <div class="card-content">

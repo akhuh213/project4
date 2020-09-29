@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from .filters import SearchFilter
 # Create your views here.
 
 
@@ -132,14 +133,22 @@ class CommentDelete(DeleteView):
 #     success_url = '/posts/'+str(Comment.post_id)
 
 
+
+
 def index(request):
-    return HttpResponse('<h1>Hello, World</h1>')
+    
+    myFilter = SearchFilter()
+    return render(request, 'index.html', {'myFilter':myFilter})
+
 
 def post_index(request):
     posts = Post.objects.all()
-    return render(request, 'posts/index.html', {'posts':posts})
+
+    myFilter = SearchFilter()
+    return render(request, 'posts/index.html', {'posts':posts, 'myFilter':myFilter})
 
 def post_show(request, post_id):
     post = Post.objects.get(id=post_id)
-    return render(request, 'posts/show.html', {'post':post})
+    myFilter = SearchFilter()
+    return render(request, 'posts/show.html', {'post':post, 'myFilter':myFilter})
 
