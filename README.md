@@ -15,9 +15,9 @@ Sun :
 Mon : 
 
 struggle: 
-1. grabbing post id when create the comments 
+- grabbing post id when create the comments 
     - solution: self.object.post_id = Post.objects.get(pk= self.kwargs['pk']) 
-2. grabing posot id when deleting comment. cannot go back to the post (success_url)
+- grabing posot id when deleting comment. cannot go back to the post (success_url)
     - solution: not solved completely. for now, just set the success_url to '/posts/'
 
 

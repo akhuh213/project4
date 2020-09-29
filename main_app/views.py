@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .filters import SearchFilter
+from django.contrib import messages
 # Create your views here.
 
 
@@ -31,11 +32,17 @@ def login_view(request):
                     login(request, user)
                     return HttpResponseRedirect('/user/'+u)
                 else:
-                    print('The account has been disabled.')
+                    messages.info(request, 'The acccount has been disabled')
+                    return HttpResponseRedirect('/login/')
+                   
             else:
-                print('The username and/or password is incorrect.')
+                messages.info(request, 'The username and/or password is incorrect.')
+                return HttpResponseRedirect('/login/')
+           
         else:
-            print('The username and/or password is incorrect.')
+            messages.info(request, 'The username and/or password is incorrect.')
+            return HttpResponseRedirect('/login/')
+         
     else: 
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
@@ -56,6 +63,7 @@ def signup(request):
             return HttpResponseRedirect('/posts')
     else:
         form = UserCreationForm()
+        messages.info(request, 'User name is already taken, please try new user name')
         return render(request, 'signup.html', {'form': form})
 
 class PostCreate(CreateView):
