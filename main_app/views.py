@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Post, Comment
+from .models import Post, Comment, Profile
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -86,13 +86,12 @@ class PostDelete(DeleteView):
 
 class CommentCreate(CreateView):
     model = Comment
-    fields = ['content', 'user']
-    template_name = 'comment_form.html'
+    fields = ['content']
+    # template_name = 'comment_form.html'
    
     success_url = '/posts/'
 
     def form_valid(self, form):
-        print(self.object, self.request)
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.post_id = Post.objects.get(pk= self.kwargs['pk'])
@@ -100,6 +99,20 @@ class CommentCreate(CreateView):
         print(self.object.post_id)
         return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
 
+@method_decorator(login_required, name='dispatch')
+class CommentUpdate(UpdateView):
+    model = Comment
+    fields = ['content']
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False) 
+        self.object.save()
+        return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
+
+# @method_decorator(login_required, name='dispatch')
+# class CommentDelete(DeleteView):
+#     model = Comment
+#     success_url = '/posts/'+str(Comment.post_id)
 
 
 def index(request):

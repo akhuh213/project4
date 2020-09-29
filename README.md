@@ -18,6 +18,11 @@ Sun :
 2. zipcode 
 3. setup the comments model (x)
 4. comments CRUD
+    - comment get (x)
+    - commnet post (x)
+    - comment put 
+    - comment delete 
+
 
 
 Mon : 

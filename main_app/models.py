@@ -62,11 +62,12 @@ class Post(models.Model):
     price = models.IntegerField
     sold = models.BooleanField(default=False)
     img = models.ImageField(upload_to='images/', blank=True)
-    time = models.TimeField
+    created_on = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     
-    
+    class Meta:
+        ordering = ['created_on']
 
 
     def __str__(self):
@@ -81,6 +82,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     zipcode = models.PositiveIntegerField
     email = models.EmailField
+    
+    def __str__(self):
+        return (self.zipcode)
+
+
 
 
 @receiver(post_save, sender=User)
