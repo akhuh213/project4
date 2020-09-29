@@ -25,7 +25,10 @@
         {{ comment.content }}
         {{ comment.id }}
         {% if comment.user == request.user %}
-        <a href="{% url 'comment_update' comment.id post.id%}"> Update Details</a>
+        <a href="{% url 'comment_update' comment.id post.id%}"> Edit </a>
+        <form method="POST" action="{% url 'comment_delete' comment.id post.id%}">
+            {% csrf_token %}<input type="submit" value="DELETE">
+         </form>
         {% endif %}
         <hr />
         {% endfor %}

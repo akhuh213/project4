@@ -20,9 +20,8 @@ Sun :
 4. comments CRUD
     - comment get (x)
     - commnet post (x)
-    - comment put 
+    - comment put (x)
     - comment delete 
-
 
 
 Mon : 

@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -87,9 +88,6 @@ class PostDelete(DeleteView):
 class CommentCreate(CreateView):
     model = Comment
     fields = ['content']
-    # template_name = 'comment_form.html'
-   
-    success_url = '/posts/'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -108,6 +106,25 @@ class CommentUpdate(UpdateView):
         self.object = form.save(commit=False) 
         self.object.save()
         return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
+
+
+
+@method_decorator(login_required, name='dispatch')
+class CommentDelete(DeleteView):
+    model = Comment    
+    success_url = '/posts/'   
+    # def get_success_url(self):
+    # # Assuming there is a ForeignKey from Comment to Post in your model
+    #     post = self.object.post_id 
+    #     return reverse_lazy( 'post_show', kwargs={'post.id': post.id})
+
+
+
+    # # success_url = ''
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False) 
+    #     self.object.save()
+    #     return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
 
 # @method_decorator(login_required, name='dispatch')
 # class CommentDelete(DeleteView):
