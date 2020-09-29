@@ -110,3 +110,10 @@ class Comment(models.Model):
         ordering = ['created_on']
     def __str__(self):
         return 'Comment {} by {}'.format(self.content, self.user)
+
+
+class Search(models.Model):
+    item = models.CharField(max_length=50)
+    created_on = models.DateTimeField(auto_now_add=True)
+    
+

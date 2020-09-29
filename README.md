@@ -2,7 +2,7 @@
 
 working scope
 
-Sat :
+Sun :
 1. setup posts model (x)
 2. finish CRUD for posts  
     - Get route for posts (x)
@@ -12,7 +12,7 @@ Sat :
 3. User model 
     - user authentication (x)
 
-Sun : 
+Mon : 
 1. Post (x)
     - image uploading (x)
 2. zipcode 
@@ -21,19 +21,22 @@ Sun :
     - comment get (x)
     - commnet post (x)
     - comment put (x)
-    - comment delete 
+    - comment delete (x)
 
 
-Mon : 
+Tue : 
 
-1. Search Post function 
+1. Set up search model 
+2. Search function 
 
 
-Tue :
+Wed :
+1. setup the message model 
 1. message CRUD 
 2. new msg alert
 
-Wed : 
+Thurs : 
 1. people also viewed 
+2. CSS 
 
 
