@@ -143,7 +143,6 @@ def index(request):
 
 def post_index(request):
     posts = Post.objects.all()
-
     myFilter = SearchFilter(request.GET, queryset=posts)
     posts = myFilter.qs
     return render(request, 'posts/index.html', {'posts':posts, 'myFilter':myFilter})

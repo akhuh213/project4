@@ -41,16 +41,23 @@ pip -V
 
 
 1. Search 
+    a. basic (x)
     - Set up search model (x)
     - Make search bar (x)
     - Filter function (x)
-    - get route 
-    - result showing page 
-    - routes to showing previous search
-2. msg
-    - Set up msg model (many to many)
-    - 
+    - get route to post model (x)
+    - result showing page (x)
 
+* stretch goals : more precise search 
+
+    b. showing previous related search 
+    - create route to search model 
+    - get route to search model to grab the realted posts from Post model to display 
+
+
+2. zipcode 
+3. msg
+    - Set up msg model (many to many)
 
 
 Wed :
@@ -61,5 +68,4 @@ Wed :
 Thurs : 
 1. people also viewed 
 2. CSS 
-
 

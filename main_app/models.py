@@ -59,12 +59,13 @@ class Post(models.Model):
         max_length=2,
         choices=CONDITION_CHOICES,
     )
-    price = models.IntegerField
+    zipcode = models.CharField(max_length=5, default = 20152)
+    price = models.IntegerField()
     sold = models.BooleanField(default=False)
     img = models.ImageField(upload_to='images/', blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+   
     
     class Meta:
         ordering = ['created_on']
@@ -94,8 +95,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    zipcode = models.PositiveIntegerField
-    email = models.EmailField
+    zipcode = models.PositiveIntegerField()
+    email = models.EmailField()
     searches = models.ManyToManyField(Search)
     
     def __str__(self):
