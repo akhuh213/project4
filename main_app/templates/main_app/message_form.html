@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Comment 
-{% endblock %}
+
 {% block content %}
+
+<h1>{{ user }}'s messages</h1>
+    
+  
+<h3> Sender: </h3>
+<a href="/message/{{user}}/inbox/{{message.receiver.username}}">
+    <h3>{{ messagess.sender.username }}</h3>
+    
+</a>
 
 
 {% if user.is_authenticated %}

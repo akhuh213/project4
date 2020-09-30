@@ -101,6 +101,8 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     new = models.BooleanField(default = True)
     
+    class Meta:
+        ordering = ['timestamp']
     def __str__(self):
         return (self.content)
 

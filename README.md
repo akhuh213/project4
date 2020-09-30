@@ -55,21 +55,20 @@ pip -V
     - get route to search model to grab the realted posts from Post model to display 
 
 
-2. zipcode (half)
+    2. zipcode (half)
 
 
 
 Wed :
+
+blocker: displaying the reciever's name in create msg form. 
 1. setup the message model (x)
 2. message CRUD 
     - msg create(x)
         - msg form (x)
-    - msg get (using filter)
-        - sender
-        - reciever
-    - msg delete
-        - sender
-        - reciever
+    - msg get (using filter) 
+        - sender 
+        - recieved msg (x)
     - msg delete all
         - sender
         - reciever

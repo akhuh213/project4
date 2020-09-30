@@ -17,4 +17,5 @@ urlpatterns = [
     path('posts/<int:pk>/comment/<int:comment_id>/delete', views.CommentDelete.as_view(), name='comment_delete'),
     path('message/<username>/<int:pk>', views.MessageCreate.as_view(), name='message_create'),
     path('message/<username>/inbox', views.inbox_view, name='message_inbox'),
+    path('message/<username>/inbox/<int:sender_id>', views.inbox_detail_view, name='message_detail'),
 ]

@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .filters import SearchFilter
 from django.contrib import messages
+from django.db.models import Q
+
 # Create your views here.
 
 
@@ -162,9 +164,15 @@ class MessageCreate(CreateView):
 def inbox_view(request, username):
     print(username)
     user = User.objects.get(username=username)
-    message = Message.objects.filter(receiver=user.pk)
+    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender=user.pk)) 
+ 
     return render(request, 'message/inbox.html', {'messagess':message, 'user':user})
 
+def inbox_detail_view(request, username):
+    print(username)
+    user = User.objects.get(username=username)
+    message = Message.objects.filter(receiver=user.pk) and Message.objects.filter(sender=user.pk)
+    return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user})
 
 def index(request):
     
