@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Post, Comment, Profile
+from .models import Post, Comment, Profile, Message
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -144,7 +144,17 @@ class CommentDelete(DeleteView):
 #     model = Comment
 #     success_url = '/posts/'+str(Comment.post_id)
 
+class MessageCreate(CreateView):
+    model = Message
+    fields = ['content']
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.sender = self.request.user
+        self.object.receiver = User.objects.get(pk= self.kwargs['pk'])
+        self.object.save()
+        print(self.object.receiver)
+        return HttpResponseRedirect('/message/'+str(self.object.receiver.pk)+'/'+str(self.object.sender.pk))
 
 
 def index(request):
@@ -161,6 +171,6 @@ def post_index(request):
 
 def post_show(request, post_id):
     post = Post.objects.get(id=post_id)
-    
+    comment = Comment.objects.get
     return render(request, 'posts/show.html', {'post':post})
 

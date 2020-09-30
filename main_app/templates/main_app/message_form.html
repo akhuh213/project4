@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Comment 
+{% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h3> message to {{pk}}</h3>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_p }}
+    </table>
+    <input type="submit" value="Submit!">
+</form>
+{% else %}
+please, sign in 
+{% endif %}
+{% endblock %}

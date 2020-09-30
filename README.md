@@ -55,15 +55,26 @@ pip -V
     - get route to search model to grab the realted posts from Post model to display 
 
 
-2. zipcode 
-3. msg
-    - Set up msg model (many to many)
+2. zipcode (half)
+
 
 
 Wed :
-1. setup the message model 
-1. message CRUD 
-2. new msg alert
+1. setup the message model (x)
+2. message CRUD 
+    - msg create(x)
+        - msg form (x)
+    - msg get (using filter)
+        - sender
+        - reciever
+    - msg delete
+        - sender
+        - reciever
+    - msg delete all
+        - sender
+        - reciever
+
+3. new msg alert
 
 Thurs : 
 1. people also viewed 
