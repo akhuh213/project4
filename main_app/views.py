@@ -148,13 +148,22 @@ class MessageCreate(CreateView):
     model = Message
     fields = ['content']
 
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.sender = self.request.user
         self.object.receiver = User.objects.get(pk= self.kwargs['pk'])
         self.object.save()
         print(self.object.receiver)
-        return HttpResponseRedirect('/message/'+str(self.object.receiver.pk)+'/'+str(self.object.sender.pk))
+        
+        return HttpResponseRedirect('/message/'+str(self.object.sender.username)+'/inbox')
+
+
+def inbox_view(request, username):
+    print(username)
+    user = User.objects.get(username=username)
+    message = Message.objects.filter(receiver=user.pk)
+    return render(request, 'message/inbox.html', {'messagess':message, 'user':user})
 
 
 def index(request):
