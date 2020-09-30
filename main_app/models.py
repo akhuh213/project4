@@ -93,12 +93,27 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
+class Message(models.Model):
+    content = models.TextField(max_length=500)
+    sender = models.ForeignKey(User(), on_delete=models.CASCADE,related_name="sender")
+    receiver = models.ForeignKey(User(), on_delete=models.CASCADE, related_name="receiver")
+    message_file = models.FileField(upload_to='message/')
+    timestamp = models.DateTimeField(auto_now_add=True)
+    new = models.BooleanField(default = True)
+    
+    def __str__(self):
+        return (self.content)
+
+
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     zipcode = models.PositiveIntegerField()
     email = models.EmailField()
     searches = models.ManyToManyField(Search)
     
+
     def __str__(self):
         return (self.zipcode)
 

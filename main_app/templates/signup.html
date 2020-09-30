@@ -7,4 +7,13 @@
     {{ form.as_p }}
     <button type="submit">Sign up</button>
   </form>
+
+
+  {% if messages %}
+  <div>
+      {% for message in messages %}
+      <h2> {{message}} </h2>
+      {% endfor %}
+  </div>
+  {% endif %}
 {% endblock %}

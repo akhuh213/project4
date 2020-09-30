@@ -30,6 +30,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    messages.info(request, 'You are logged in')
                     return HttpResponseRedirect('/user/'+u)
                 else:
                     messages.info(request, 'The acccount has been disabled')
@@ -49,6 +50,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.info(request, 'Successfully logged out')
     return HttpResponseRedirect('/posts')
 
 
@@ -61,9 +63,11 @@ def signup(request):
             user = form.cleaned_data['username']
             # return render(request, 'profile.html', {'username':user})
             return HttpResponseRedirect('/posts')
+        else:            
+            return render(request, 'signup.html', {'form': form})  
+            
     else:
         form = UserCreationForm()
-        messages.info(request, 'User name is already taken, please try new user name')
         return render(request, 'signup.html', {'form': form})
 
 class PostCreate(CreateView):

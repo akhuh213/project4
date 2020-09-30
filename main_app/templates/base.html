@@ -12,6 +12,14 @@
         <span> | </span>
         <span><a href="{% url 'signup' %}">SignUp</a></span>
         {% endif %}
+        
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <p> {{message}} </p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <a href="/posts">
             <h1>Kids 2 Kids</h1>
         </a>
