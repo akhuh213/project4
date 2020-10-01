@@ -188,12 +188,10 @@ def inbox_detail_view(request, username, sender_id):
         if str(msg.receiver.id) == username:
             print(msg.receiver.id, username)
             msg.new = False
+            msg.save()
             print(msg.new)
         else:
             print('hello')
-
-   
-            
 
     # message = Message.objects.filter(receiver=user, sender=sender_id)
     return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
