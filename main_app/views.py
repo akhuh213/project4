@@ -160,6 +160,10 @@ class MessageCreate(CreateView):
         
         return HttpResponseRedirect('/message/'+str(self.object.sender.pk)+'/inbox/'+str(self.object.receiver.pk))
 
+@method_decorator(login_required, name='dispatch')
+class MessageDelete(DeleteView):
+    model = Message    
+    success_url = '/posts/' 
 
 def inbox_view(request, username):
     print(username)
@@ -175,10 +179,22 @@ def inbox_view(request, username):
             return render(request, 'message/inbox.html', {'messagess':result, 'user':user })
 
 def inbox_detail_view(request, username, sender_id):
-    print(username)
+    # print(username)
     user = User.objects.get(pk=username)
-    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender= user.pk)).order_by('timestamp') 
+    message = Message.objects.filter(Q(receiver=user.pk,sender= sender_id)| Q(receiver= sender_id, sender=user.pk)).order_by('timestamp') 
     receiver = sender_id
+    for msg in message:
+        print(msg.receiver.id, username, msg.new)
+        if str(msg.receiver.id) == username:
+            print(msg.receiver.id, username)
+            msg.new = False
+            print(msg.new)
+        else:
+            print('hello')
+
+   
+            
+
     # message = Message.objects.filter(receiver=user, sender=sender_id)
     return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
 

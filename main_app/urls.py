@@ -18,4 +18,5 @@ urlpatterns = [
     path('message/<username>/<int:pk>', views.MessageCreate.as_view(), name='message_create'),
     path('message/<username>/inbox', views.inbox_view, name='message_inbox'),
     path('message/<username>/inbox/<int:sender_id>', views.inbox_detail_view, name='message_detail'),
+    path('message/<username>/inbox/<int:pk>/delete', views.MessageDelete.as_view(), name='message_delete'),
 ]
