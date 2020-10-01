@@ -164,14 +164,23 @@ class MessageCreate(CreateView):
 def inbox_view(request, username):
     print(username)
     user = User.objects.get(username=username)
-    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender=user.pk)) 
+    message = Message.objects.filter(receiver=user.id)
+    
+
+    # for msg in message:
+    #     if msg.sender in result:
+    #         pass
+    #     else:
+    #         result.append(msg)
+    # message = Message.objects.filter(Q(receiver=user.pk) | Q(sender=user.pk)) 
  
     return render(request, 'message/inbox.html', {'messagess':message, 'user':user})
 
-def inbox_detail_view(request, username):
+def inbox_detail_view(request, username, sender_id):
     print(username)
-    user = User.objects.get(username=username)
-    message = Message.objects.filter(receiver=user.pk) and Message.objects.filter(sender=user.pk)
+    user = User.objects.get(pk=username)
+    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender= user.pk)) 
+    # message = Message.objects.filter(receiver=user, sender=sender_id)
     return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user})
 
 def index(request):
