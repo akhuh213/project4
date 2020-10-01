@@ -158,30 +158,29 @@ class MessageCreate(CreateView):
         self.object.save()
         print(self.object.receiver)
         
-        return HttpResponseRedirect('/message/'+str(self.object.sender.username)+'/inbox')
+        return HttpResponseRedirect('/message/'+str(self.object.sender.pk)+'/inbox/'+str(self.object.receiver.pk))
 
 
 def inbox_view(request, username):
     print(username)
     user = User.objects.get(username=username)
-    message = Message.objects.filter(receiver=user.id)
-    
-
-    # for msg in message:
-    #     if msg.sender in result:
-    #         pass
-    #     else:
-    #         result.append(msg)
-    # message = Message.objects.filter(Q(receiver=user.pk) | Q(sender=user.pk)) 
+    message = Message.objects.filter(receiver=user.id).order_by('-timestamp')
+    result = []
+    for msg in message:
+        if msg.receiver in result:
+            pass
+        else:
+            result.append(msg)
  
-    return render(request, 'message/inbox.html', {'messagess':message, 'user':user})
+            return render(request, 'message/inbox.html', {'messagess':result, 'user':user })
 
 def inbox_detail_view(request, username, sender_id):
     print(username)
     user = User.objects.get(pk=username)
-    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender= user.pk)) 
+    message = Message.objects.filter(Q(receiver=user.pk) | Q(sender= user.pk)).order_by('timestamp') 
+    receiver = sender_id
     # message = Message.objects.filter(receiver=user, sender=sender_id)
-    return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user})
+    return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
 
 def index(request):
     

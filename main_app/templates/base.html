@@ -7,6 +7,7 @@
         <span> | </span>
         <span><a href="{% url 'logout' %}">Logout</a></span>
         <span> | </span>
+        <span><a href="{% url 'message_inbox' user.username %}"> Message </a></span>
         {% else %}
         <span><a href="{% url 'login' %}">Login</a></span>
         <span> | </span>
