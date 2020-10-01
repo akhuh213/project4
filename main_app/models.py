@@ -111,9 +111,9 @@ class Message(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    zipcode = models.PositiveIntegerField()
-    email = models.EmailField()
-    searches = models.ManyToManyField(Search)
+    zipcode = models.PositiveIntegerField(blank = True)
+    email = models.EmailField(blank =True)
+    searches = models.ManyToManyField(Search, blank = True)
     
 
     def __str__(self):
