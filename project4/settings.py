@@ -21,7 +21,7 @@ import sys
 # from decouple import config
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['DATABASE_URL'] = 'postgres://mngmkyitgmgkxa:cb32779c06ae8474c3e6e813abdf5727ecadb6f75a0317e8da17401e066328de@ec2-54-166-251-173.compute-1.amazonaws.com:5432/ddbj23u261d0ij'
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
