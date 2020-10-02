@@ -34,6 +34,7 @@ class Post(models.Model):
     category = models.CharField(
         max_length=2,
         choices=CATEGORY_CHOICES,
+        blank=True
     )
     AGE_CHOICES = [
         (THREEMONTH,'3m'),
@@ -48,6 +49,7 @@ class Post(models.Model):
     age = models.CharField(
         max_length=2,
         choices=AGE_CHOICES,
+        blank=True
     )
     CONDITION_CHOICES = [
         (NEW, 'New'),
@@ -58,13 +60,14 @@ class Post(models.Model):
     condition = models.CharField(
         max_length=2,
         choices=CONDITION_CHOICES,
+        blank=True
     )
     zipcode = models.CharField(max_length=5, default = 20152)
     price = models.IntegerField()
     sold = models.BooleanField(default=False)
     img = models.ImageField(upload_to='images/', blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
    
     
     class Meta:
@@ -111,7 +114,7 @@ class Message(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.EmailField(blank =True)
+    email = models.EmailField(default= 'a@gmail.com')
     searches = models.ManyToManyField(Search, blank = True)
     
 

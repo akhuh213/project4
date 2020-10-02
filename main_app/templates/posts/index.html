@@ -11,6 +11,7 @@
 </form>
 
     {% for post in posts %}
+       
     <a href="{% url 'posts_show' post.id %}">
         <div class="card-content">
 
@@ -21,8 +22,9 @@
         <p>categories: {{ post.category }}</p>
 
     <hr />
-{% endfor %}
-        <button type="submit"><a href="/posts/create">Sell</a></button>
+    {% endfor %}
+
+    <a href="{% url 'posts_create' %}"> sell </a>
 
 {% endblock %}
 

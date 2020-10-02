@@ -75,7 +75,7 @@ def signup(request):
 class PostCreate(CreateView):
     model = Post
     fields = '__all__'
-    success_url = '/posts'
+
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -197,16 +197,20 @@ def inbox_detail_view(request, username, sender_id):
     return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
 
 def index(request):
-    
     myFilter = SearchFilter()
+
     return render(request, 'index.html', {'myFilter':myFilter})
+
 
 
 def post_index(request):
     posts = Post.objects.all()
+    
     myFilter = SearchFilter(request.GET, queryset=posts)
     posts = myFilter.qs
+
     return render(request, 'posts/index.html', {'posts':posts, 'myFilter':myFilter})
+
 
 def post_show(request, post_id):
     post = Post.objects.get(id=post_id)
