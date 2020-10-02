@@ -5,11 +5,44 @@
 
 
     <h2>{{post.title}}</h2>
-    <h3>{{post.user}}</h3>
-    <p>{{post.content}}</p>
-    <p>{{post.category}}</p>
-    <p>{{post.age}}</p>
-    
+    <div>
+    <p>Seller: {{post.user}}  <a href="{% url 'message_create' user.id post.user.id %}">
+    message</p>
+    </a>
+    </div>
+    <p>Category:
+    {% if post.cateogry == TY %}
+        Toy
+    {% elif post.cateogry == DP %}
+        Diapers
+    {% elif post.cateogry == CL %}
+        Clothes
+    {% elif post.cateogry == BK %}
+        Books
+    {% elif post.cateogry == OT %}
+        Others
+    {% endif %}
+    </p>    
+
+    <!-- {% if post.age == 3M %}
+        3 months
+    {% elif post.age == 6M %}
+        6 months
+    {% elif post.age == 9M %}
+        9 months
+    {% elif post.age == 1Y %}
+        1 yr
+    {% elif post.age == 2Y %}
+        2 yr
+    {% elif post.age == 3Y %}
+        3 yr
+    {% elif post.age == 4Y %}
+        4 yr
+    {% elif post.age == 5Y %}
+        5 yr -->
+    <!-- {% endif %} -->
+    <p>Age: {{ post.age }}</p>
+    <h4>{{post.content}}</h4>
     {% if post.img %}
         <img src="{{ post.img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />         
 

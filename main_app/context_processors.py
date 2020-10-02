@@ -14,11 +14,10 @@ from django.contrib import messages
 from django.db.models import Q
 
 
-@login_required
 def add_variable_to_context(request):
     print(str(request.user.id))
-    return {"test": "test"}
-    if request.user.id:
+
+    if request.user.id is not None:
         message = Message.objects.filter(receiver=str(request.user.id))
 
         print(message)
@@ -32,6 +31,6 @@ def add_variable_to_context(request):
                 if msg.new == False:
                     return {"test": "no new message"}
         else:
-            pass
+            return {"test":"."}
     else:
-        pass
+        return {"test":"please, log in"}
