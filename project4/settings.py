@@ -53,9 +53,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = [
-    'kids2kids2s.herokuapp.com'
-]
+ALLOWED_HOSTS = ['kids2kids2s.herokuapp.com']
 
 
 # Application definition
