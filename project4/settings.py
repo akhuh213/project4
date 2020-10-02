@@ -20,8 +20,7 @@ import sys
 
 # from decouple import config
 
-
-DATABASE_URL = os.environ['DATABASE_URL'] = 'postgres://mngmkyitgmgkxa:cb32779c06ae8474c3e6e813abdf5727ecadb6f75a0317e8da17401e066328de@ec2-54-166-251-173.compute-1.amazonaws.com:5432/ddbj23u261d0ij'
+DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
@@ -50,7 +49,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'mylittlesecret'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = ['kids2kids2s.herokuapp.com']
