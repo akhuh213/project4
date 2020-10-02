@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(194, 144, 194);
+}
+body {
+
+    
+    
+    background-color: beige
+}
+.form {
+    display: block;
+    text-align: center;
+}
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}

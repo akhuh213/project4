@@ -62,7 +62,7 @@ class Post(models.Model):
         choices=CONDITION_CHOICES,
         blank=True
     )
-    zipcode = models.CharField(max_length=5, default = 20152)
+    zipcode = models.CharField(max_length=5, blank=True)
     price = models.IntegerField()
     sold = models.BooleanField(default=False)
     img = models.ImageField(upload_to='images/', blank=True)

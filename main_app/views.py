@@ -74,7 +74,7 @@ def signup(request):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ['title','content','cateogry','age','condition','price','zipcode','img']
+    fields = ['title','content','category','age','condition','price','zipcode','img']
 
 
     def form_valid(self, form):
