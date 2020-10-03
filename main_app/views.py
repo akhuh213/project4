@@ -151,15 +151,17 @@ class MessageDelete(DeleteView):
 def inbox_view(request, username):
     print(username)
     user = User.objects.get(username=username)
-    message = Message.objects.filter(receiver=user.id).order_by('-timestamp')
-    result = []
+    message = Message.objects.filter(receiver=user.pk).order_by('sender','-timestamp').distinct('sender')
+    print(message)
+    # messagess = message.distinct('receiver_id')
+
+    result=[]
     for msg in message:
-        if msg.receiver in result:
-            pass
-        else:
+
+        if msg.sender not in result:
             result.append(msg)
- 
-            return render(request, 'message/inbox.html', {'messagess':result, 'user':user })
+            # print("this", result)
+    return render(request, 'message/inbox.html', {'messagess':message, 'user':user })
 
 def inbox_detail_view(request, username, sender_id):
     # print(username)
