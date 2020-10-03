@@ -1,9 +1,72 @@
-
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<form method="get">
-    {{myFilter.form}}
-<button type="submit">Search</button>
-</form>
+
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<style>
+    #page-container{
+        background-image: url("{% static 'children.jpg' %}");     
+        background-size: cover;
+        background-repeat: no-repeat;  
+        display: flex;
+        justify-content: space-evenly;
+        text-shadow: 3px 3px 6px white;
+        
+    }
+    #content-wrap{
+        display: flex;
+        flex-flow: row;
+        margin-top: 15%;
+        
+    }
+
+    #first { 
+        margin-top: 80px;
+        margin-bottom: 30px;
+       
+    }
+
+
+
+</style>
+
+
+<div class = mainindex>
+    <div id = title>
+    <h1 style = font-size:100px;>kids 2 kids </h1>
+    </div>
+{% if user.is_authenticated %}
+    <div id = first>
+    <a href="{% url 'posts_create' %}"> 
+        {% bootstrap_button "I'm here to sell" button_type="submit" button_class="btn-primary btn-block" %}
+        </a>
+    </div>
+    <div id = second>
+    <a id = second href="{% url 'post_index' %}"> 
+            {% bootstrap_button "I'm here to buy" button_type="submit" button_class="btn-primary btn-block" %}
+        </a>
+    </div>
+</div>
+{% else %}
+    <div id = first>
+    <a href="{% url 'login' %}"> 
+        {% bootstrap_button "I'm here to sell" button_type="submit" button_class="btn-primary btn-block" %}
+        </a>
+    </div>
+    <div id = second>
+    <a id = second href="{% url 'post_index' %}"> 
+            {% bootstrap_button "I'm here to buy" button_type="submit" button_class="btn-primary btn-block" %}
+        </a>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

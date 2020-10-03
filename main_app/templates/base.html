@@ -1,52 +1,71 @@
 
+{% load static %}
 
-    {% load static %}
+
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+
+    <div class = head>
     <head>
         <link rel="stylesheet" type="text/css" href="
         {% static 'style.css' %}">
     </head>
     <header>
         {% if user.is_authenticated %}
-
+        <p>
         <span><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></span>
         <span> | </span>
         <span><a href="{% url 'logout' %}">Logout</a></span>
         <span> | </span>
-    
-                
-
+        <span><a href="{% url 'post_index' %}">Market</a></span>
+        <span> | </span>
+        <span><a href="{% url 'posts_create' %}"> Sell</a></span>
+        <span> | </span>
         <span><a href="{% url 'message_inbox' user.username %}"> Message </a></span>
         {{test}}
-
+        </p>
+       
         {% else %} 
-        <span><a href="{% url 'login' %}">Login</a></span>
+        <p>
+        <span><a href="{% url 'login' %}"> Login </a></span>
         <span> | </span>
         <span><a href="{% url 'signup' %}">SignUp</a></span>
+        <span> | </span>
+        <span><a href="{% url 'post_index' %}">Market</a></span>
+        </p>
         {% endif %}
         
-        {% if messages %}
+        <!-- {% if messages %}
         <div>
             {% for message in messages %}
             <p> {{message}} </p>
             {% endfor %}
         </div>
-        {% endif %}
-        <a href="/posts">
-            <h1>Kids 2 Kids</h1>
-        </a>
-        
+        {% endif %} -->
+        <h1><a href="{% url 'index' %}">
+            Kids 2 Kids</a></h1>
+       
       </header>
-      <hr />
+   
+    </div>
   
 
 <body>
-
+<div id="page-container">
+    <div id="content-wrap">
 
 {% block content %}
 {% endblock %}
-
+</div>
+</div>
 </body>
 
-<footer>
-    All Rights Reserved, Kids 2 Kids 
-</footer>
+<div id="footer">
+    <footer>All Rights Reserved, Kids 2 Kids</footer>
+</div>

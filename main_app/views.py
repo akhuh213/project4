@@ -33,7 +33,7 @@ def login_view(request):
                 if user.is_active:
                     login(request, user)
                     messages.info(request, 'You are logged in')
-                    return HttpResponseRedirect('/user/'+u)
+                    return HttpResponseRedirect('/posts/')
                 else:
                     messages.info(request, 'The acccount has been disabled')
                     return HttpResponseRedirect('/login/')
@@ -128,23 +128,6 @@ class CommentUpdate(UpdateView):
 class CommentDelete(DeleteView):
     model = Comment    
     success_url = '/posts/'   
-    # def get_success_url(self):
-    # # Assuming there is a ForeignKey from Comment to Post in your model
-    #     post = self.object.post_id 
-    #     return reverse_lazy( 'post_show', kwargs={'post.id': post.id})
-
-
-
-    # # success_url = ''
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False) 
-    #     self.object.save()
-    #     return HttpResponseRedirect('/posts/'+str(self.object.post_id.pk))
-
-# @method_decorator(login_required, name='dispatch')
-# class CommentDelete(DeleteView):
-#     model = Comment
-#     success_url = '/posts/'+str(Comment.post_id)
 
 class MessageCreate(CreateView):
     model = Message
@@ -197,9 +180,10 @@ def inbox_detail_view(request, username, sender_id):
     return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
 
 def index(request):
-    myFilter = SearchFilter()
 
-    return render(request, 'index.html', {'myFilter':myFilter})
+
+    
+    return render(request, 'index.html')
 
 
 

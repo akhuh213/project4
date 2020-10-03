@@ -61,13 +61,15 @@ pip -V
 
 Wed :
 
-blocker: displaying the reciever's name in create msg form. 
+blocker: displaying the reciever's name in create msg form. (solved)
+displaying sender's name olny once in message index
+
 1. setup the message model (x)
 2. message CRUD 
     - msg create(x)
         - msg form (x)
     - msg get (using filter) 
-        - sender 
+        - sender (x)
         - recieved msg (x)
     - msg delete all
         - sender

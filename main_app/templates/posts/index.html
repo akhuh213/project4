@@ -1,14 +1,24 @@
-
-
-
 {% extends 'base.html' %}
 
 {% block content %}
+
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
 
 <form method="get">
     {{myFilter.form}}
 <button type="submit">Search</button>
 </form>
+
+
 
     {% for post in posts %}
        
@@ -17,14 +27,19 @@
 
         <h2>{{ post.title }}</h2>
         </a>
+        <p>{{ post.user }}</p>
+        <p> ${{ post.price }} </p>
  
-        <p>Content: {{ post.content }}</p>
-        <p>categories: {{ post.category }}</p>
+        {% if post.img %}
+        <div class= images>
+            <img src="{{ post.img.url }}" class="img-responsive" style="width: 30%;" />         
+        </div>
+        {% endif %}
 
     <hr />
     {% endfor %}
 
-    <a href="{% url 'posts_create' %}"> sell </a>
+
 
 {% endblock %}
 

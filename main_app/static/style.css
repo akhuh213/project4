@@ -1,12 +1,21 @@
-h1 {
-    color: rgb(194, 144, 194);
-}
-body {
+@import <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
 
+h1 {
+    color: rgb(187, 87, 187);
+    text-shadow: white 1px 1px 1px;
+    font-family: 'Secular One', sans-serif;
     
-    
-    background-color: beige
 }
+p {
+    font-family: Monospace
+}
+.head {
+    background-color: #dd88a4;
+    padding-block-start: 0.5cm;
+    padding-inline-start: 0.5cm;
+    
+}
+
 .form {
     display: block;
     text-align: center;
@@ -16,4 +25,38 @@ form {
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+}
+
+.images {
+    height: 50x;
+    width: 500x;
+}
+/* .main {
+    display: inline-block;
+    text-align: center;
+} */
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+  
+#footer {
+
+    background-color: #dd88a4;
+    bottom: 0;
+    font-size: 18px;
+    height: 2.5rem; 
+    padding-block-end: 0.5cm;           /* Footer height */
+  }
+.main {
+  
+    display: flex;
+    justify-content: space-between;
+    margin: 30%;
+    /* align-items: space-around; */
 }
