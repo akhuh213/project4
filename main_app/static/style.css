@@ -11,7 +11,7 @@ p {
 }
 .head {
     background-color: #dd88a4;
-    padding-block-start: 0.5cm;
+    padding-block-start: 0.3cm;
     padding-inline-start: 0.5cm;
     
 }
@@ -47,11 +47,12 @@ form {
   
 #footer {
 
-    background-color: #dd88a4;
+    /* background-color: #dd88a4;
     bottom: 0;
     font-size: 18px;
     height: 2.5rem; 
-    padding-block-end: 0.5cm;           /* Footer height */
+    padding-block-end: 0.5cm;   
+    margin-bottom: 0        Footer height */
   }
 .main {
   
@@ -60,3 +61,4 @@ form {
     margin: 30%;
     /* align-items: space-around; */
 }
+

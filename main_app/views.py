@@ -52,8 +52,8 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.info(request, 'Successfully logged out')
-    return HttpResponseRedirect('/posts')
+    # messages.info(request, 'Successfully logged out')
+    return HttpResponseRedirect('/')
 
 
 def signup(request):
@@ -86,7 +86,7 @@ class PostCreate(CreateView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['content','title','category']
+    fields = ['content','title','category','price','sold']
 
     def form_valid(self, form):
         self.object = form.save(commit=False) 
@@ -154,13 +154,6 @@ def inbox_view(request, username):
     message = Message.objects.filter(receiver=user.pk).order_by('sender','-timestamp').distinct('sender')
     print(message)
     # messagess = message.distinct('receiver_id')
-
-    result=[]
-    for msg in message:
-
-        if msg.sender not in result:
-            result.append(msg)
-            # print("this", result)
     return render(request, 'message/inbox.html', {'messagess':message, 'user':user })
 
 def inbox_detail_view(request, username, sender_id):
@@ -168,6 +161,7 @@ def inbox_detail_view(request, username, sender_id):
     user = User.objects.get(pk=username)
     message = Message.objects.filter(Q(receiver=user.pk,sender= sender_id)| Q(receiver= sender_id, sender=user.pk)).order_by('timestamp') 
     receiver = sender_id
+    receiver_name = User.objects.get(pk=sender_id)
     for msg in message:
         print(msg.receiver.id, username, msg.new)
         if str(msg.receiver.id) == username:
@@ -179,19 +173,16 @@ def inbox_detail_view(request, username, sender_id):
             print('hello')
 
     # message = Message.objects.filter(receiver=user, sender=sender_id)
-    return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver})
+    return render(request, 'message/inbox_detail.html', {'messagess':message, 'user':user, 'receiver':receiver, 'receiver_name':receiver_name})
 
 def index(request):
 
-
-    
     return render(request, 'index.html')
 
 
 
 def post_index(request):
-    posts = Post.objects.all()
-    
+    posts = Post.objects.all().order_by('-created_on')    
     myFilter = SearchFilter(request.GET, queryset=posts)
     posts = myFilter.qs
 
@@ -203,3 +194,9 @@ def post_show(request, post_id):
     comment = Comment.objects.get
     return render(request, 'posts/show.html', {'post':post})
 
+
+def handler404(request):
+    return render(request, '404.html', status=404)
+    
+def handler500(request):
+    return render(request, '500.html', status=500)

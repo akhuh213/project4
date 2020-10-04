@@ -16,11 +16,18 @@
 
 
 
+    <p><a href="{% url 'post_index' %}"> Back to list </a></p>
     <h2>{{post.title}}</h2>
+    {% if post.sold == True %}
+    <h4>-SOLD-</h4>
+    {% endif %}
     <div>
-    <p>Seller: {{post.user}}  <a href="{% url 'message_create' user.id post.user.id %}">
-    message</p>
-    </a>
+    {% if post.user == request.user%}
+    <p>Seller: {{post.user}} </p>
+    {% else %}
+    <p>Seller: {{post.user}} 
+         <a href="{% url 'message_create' user.id post.user.id %}">message</p></a>
+    {% endif %}     
     <p> zipcode: {{post.zipcode}} </p>
     </div>
     <p>Category:
@@ -39,6 +46,19 @@
 
 
     <p>Age: {{ post.age }}</p>
+    <p>Condition:
+        {% if post.condition == NW %}
+            New
+        {% elif post.cateogry == LN %}
+            Like a new
+        {% elif post.cateogry == GD %}
+            Good
+        {% elif post.cateogry == FR %}
+            Fair
+        {% endif %}
+        </p>   
+
+    <p>Price: ${{ post.price }}</p>
    
     {% if post.img %}
         <div class= images>

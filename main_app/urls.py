@@ -21,4 +21,6 @@ urlpatterns = [
     path('message/<username>/inbox/<int:sender_id>', views.inbox_detail_view, name='message_detail'),
     path('message/<username>/inbox/<int:pk>/delete', views.MessageDelete.as_view(), name='message_delete'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
+    path('handler404/', views.handler404),
+    path('handler500/', views.handler500),
 ]

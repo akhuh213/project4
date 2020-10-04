@@ -80,6 +80,7 @@ class Post(models.Model):
 
 
 class Search(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     item = models.CharField(max_length=50)
     created_on = models.DateTimeField(auto_now_add=True)
     

@@ -12,13 +12,15 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 <style>
-    #page-container{
+    body{
         background-image: url("{% static 'children.jpg' %}");     
         background-size: cover;
         background-repeat: no-repeat;  
         display: flex;
+        flex-flow: column;
         justify-content: space-evenly;
-        text-shadow: 3px 3px 6px white;
+        
+        /* color: color:#dd88a4; */
         
     }
     #content-wrap{
@@ -27,13 +29,31 @@
         margin-top: 15%;
         
     }
-
+    #title {
+        margin-inline-start: 35%;
+        margin-block-start: 10%;
+        text-shadow: 3px 3px 6px white;
+    }
     #first { 
         margin-top: 80px;
         margin-bottom: 30px;
+        margin-inline-start: 35%;
+        margin-inline-end: 35%;
+        
        
     }
+    #footer {
+        position : absolute;
+        bottom : 0;
+        margin-inline-start: 45%;
+        /* height : 40px;
+        margin-top : 40px; */
 
+    }
+    #second {
+        margin-inline-start: 35%;
+        margin-inline-end: 35%;
+    }
 
 
 </style>
