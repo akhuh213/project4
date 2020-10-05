@@ -16,6 +16,18 @@ from django.db.models import Q
 
 
 
+def add_variable_to_context(request):
+    print(str(request.user.id))
+
+    if request.user.id:
+        message = Message.objects.filter(receiver=str(request.user.id), new=True) 
+        print(message)
+        if message:
+            return {"test": "You have new message!"}
+        else:
+            return{"test":"no new message"}
+    else:
+        return {"test":""}
 
 # def add_variable_to_context(request):
 #     print(str(request.user.id))
@@ -31,23 +43,7 @@ from django.db.models import Q
 #             return {"test": "new message"}
 #         if msg.new == False:
 #             return {"test": "no message"}
-
-def add_variable_to_context(request):
-    print(str(request.user.id))
-
-    if request.user.id:
-        message = Message.objects.filter(receiver=str(request.user.id), new=True) 
-        print(message)
-        if message:
-            return {"test": "You have new message!"}
-        else:
-            return{"test":"no new message"}
-    else:
-        return {"test":""}
-            
-            
-            
-            
+    
     #         return {""}
     #         for msg in message:
     #             print(msg.new)

@@ -11,7 +11,16 @@
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
-
+<style>
+    .form {
+        margin-block-start: 7%;
+    }
+    #footer {
+        position : absolute;
+        bottom : 0;
+        margin-inline-start: 42%;
+    }
+</style>
 {% if user.is_authenticated %}
  {{ Message.receiver }}
 

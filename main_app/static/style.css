@@ -1,14 +1,16 @@
 @import <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
 
-h1 {
-    color: rgb(187, 87, 187);
-    text-shadow: white 1px 1px 1px;
-    font-family: 'Secular One', sans-serif;
-    
+
+body{
+    display: flex;
+    flex-flow: column;
+
 }
+
 p {
     font-family: Monospace
 }
+
 .head {
     background-color: #dd88a4;
     padding-block-start: 0.3cm;

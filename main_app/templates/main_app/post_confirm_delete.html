@@ -1,13 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Delete Post</h1>
 
-<p>Are you sure you want to delte this post: {{ post }}</p>
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<div class = delete >
+<style>
+    .delete {
+        
+    margin-inline-start: 25%;
+    margin-inline-end: 25%;
+
+    }
+    .form {
+        margin-block-start: 20%;
+    }
+    #footer {
+        position : absolute;
+        bottom : 0;
+        margin-inline-start: 42%;
+    }
+</style>
+
+<h1>Delete Post : {{ post }}</h1>
+
+<p>Are you sure you want to delte this post</p>
 <div class = "form">
 <form action="" method="post">
     {% csrf_token %}
     <input type="submit" value="Yes, delete.">
 </form>
+</div>
 </div>
 {% endblock %}

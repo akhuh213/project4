@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
 
 {# Load the tag library #}
 {% load bootstrap4 %}
@@ -11,13 +11,27 @@
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
+<style>
+.show{
+    margin-inline-start: 30%;
+    margin-inline-end: 25%;
+}
+.images{
+    margin-inline-start: 20%;
 
+}
+#footer {
+        position : relative;
+        bottom : 0;
+        margin-inline-start: 45%;
+    }
+</style>
 
-
-
+<div class = show>
 
     <p><a href="{% url 'post_index' %}"> Back to list </a></p>
     <h2>{{post.title}}</h2>
+    <hr />
     {% if post.sold == True %}
     <h4>-SOLD-</h4>
     {% endif %}
@@ -25,8 +39,8 @@
     {% if post.user == request.user%}
     <p>Seller: {{post.user}} </p>
     {% else %}
-    <p>Seller: {{post.user}} 
-         <a href="{% url 'message_create' user.id post.user.id %}">message</p></a>
+    <strong>Seller: {{post.user}} </strong>
+         <a href="{% url 'message_create' user.id post.user.id %}">message </a>
     {% endif %}     
     <p> zipcode: {{post.zipcode}} </p>
     </div>
@@ -65,12 +79,12 @@
             <img src="{{ post.img.url }}" class="img-responsive" style="width: 50%;" />         
         </div>
     {% endif %}
-    <h4>{{post.content}}</h4>
+    <h5>{{post.content}}</h5>
     {% if post.user == request.user %}
-        <a href="{% url 'posts_update' post.id%}"> Update Details</a>
+        <a href="{% url 'posts_update' post.id%}"> Edit</a>
         <a href="{% url 'posts_delete' post.id%}"> Delete</a>
     {% endif %}    
-
+        <hr />
     <h4> Comments </h4>
     {% if not post.comments.all %}
         No Comments Yet...<a href="{% url 'comment_create' post.id%}">
@@ -94,10 +108,10 @@
         <hr />
         {% endif %}
         {% endfor %}
-        <hr />
-
+     
         <a href="{% url 'comment_create' post.id%}">
             Add Comment </a>
+            <hr />
     {% endif %}
-
+</div>
 {% endblock %}
