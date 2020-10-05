@@ -1,4 +1,16 @@
-# project4
+# project4 - Kids 2 Kids
+
+## Purpose
+This is an app for users to enable to sell or buy children's used items
+
+## Technologies Used
+- django
+- Postgresql
+- python
+
+
+Database ERD
+![ERD](./static/image/kids2kids_erd.png)
 
 working scope
 
