@@ -15,6 +15,7 @@ psycopg2 = "*"
 whitenoise = "*"
 Pillow = "*"
 django-filter = "*"
+django-bootstrap4 = "*"
 
 [requires]
 python_version = "3.8"
