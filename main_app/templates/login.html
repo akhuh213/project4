@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+<style>
+  form {
+      margin-top: 35px;
+    
+  }
+  .login {
+      margin-top: 15%;
+      margin-left: 40%
+  }
+  #footer {
+      position : absolute;
+      bottom : 0;
+      margin-inline-start: 42%;
+  }
+</style>
+<div class = login>
 <h1>Login</h1>
 <form method="POST" action=".">
     {% csrf_token %}
@@ -8,5 +34,5 @@
 
 <input type="submit" value="Submit" />
 </form>
-
+</div>
 {% endblock %}
