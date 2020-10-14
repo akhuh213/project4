@@ -21,8 +21,8 @@ Database ERD
 - Search (stretch goal)
 
 ## User Stories
-- User can see the posts without logging in
-- User can posts/edit/delete to sell their items with photo images
+- User can see the posts without logging in/ User needs to log in for other activities
+- User can posts/edit/delete posts with images to sell their items
 - User can wirte/edit/delete comments on posts
 - User can search the item with title, cateogry, age, and zipcode
 - User can message to other users to exchange their personal informations
