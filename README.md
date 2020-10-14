@@ -164,7 +164,7 @@ templates/base.html
         {% endif %}
 ```
 - in message model, there's field called new. 
-The default value of new is True, and the user who opened the message box is the receiver of the message, the value will be changed to false, therefore there will be no mew message alert. 
+The default value of new is True, and if the user who opened the message box is the receiver of the message, the value will be changed to false, therefore there will be no mew message alert. 
 
 ``` python
 class Message(models.Model):
