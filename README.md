@@ -7,6 +7,7 @@ This is an app to allow users to sell or buy children's used items
 - django
 - Postgresql
 - python
+- bootstrap
 - dotenv
 
 
