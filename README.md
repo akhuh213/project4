@@ -25,9 +25,9 @@ Database ERD
 - User can see the posts without logging in/ User needs to log in for other activities
 - User can posts/edit/delete posts with images to sell their items
 - User can wirte/edit/delete comments on posts
-- User can search the item with title, cateogry, age, and zipcode
+- User can search the item using title, cateogry, age, and zipcode
 - User can message to other users to exchange their personal informations
-- When there's new message, user will receive the alrert next to her message link
+- When there's new message, user will receive the nitification next to her message link
 
 ## Installation 
 1. Fork and clone the repository.
